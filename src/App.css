@@ -1,23 +1,32 @@
+/* Root Container */
 #root {
-  max-width: 1280px;
+  max-width: 100%; /* Ensure it doesn’t overflow */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Logo Styling */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Keyframe Animation for Logo Spin */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,10 +42,58 @@
   }
 }
 
+/* Card Styling */
 .card {
   padding: 2em;
 }
 
+/* Adjusting for Reduced Motion Preferences */
 .read-the-docs {
   color: #888;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 20;
+  background-color: white;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Responsive Adjustment */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    width: 242px; /* Set sidebar width */
+  }
+
+  .main-content {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 242px; /* Adjust for open sidebar */
+  }
+}
+
+/* To ensure the content doesn't overflow */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
 }
